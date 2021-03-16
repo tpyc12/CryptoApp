@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standart_margin_text">8dp</dimen>
+    <dimen name="logo_size">120dp</dimen>
+    <dimen name="size_view_line">1dp</dimen>
+    <dimen name="small_logo_size">40dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="small_margin">4dp</dimen>
+    <dimen name="text_size_big">24sp</dimen>
+</resources>
