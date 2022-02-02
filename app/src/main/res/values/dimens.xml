@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_size_2x">80dp</dimen>
+    <dimen name="margin_2x">16dp</dimen>
+    <dimen name="margin_x">8dp</dimen>
+    <dimen name="text_size_3x">24sp</dimen>
+    <dimen name="text_size_2x">16sp</dimen>
+    <dimen name="size_line">1dp</dimen>
+    <dimen name="margin_x_2">4dp</dimen>
+</resources>
