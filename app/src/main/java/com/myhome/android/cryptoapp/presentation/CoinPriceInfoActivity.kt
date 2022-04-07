@@ -10,13 +10,13 @@ import com.squareup.picasso.Picasso
 
 class CoinPriceInfoActivity : AppCompatActivity() {
 
-    private lateinit var ui: ActivityCoinPriceInfoBinding
+    private lateinit var binding: ActivityCoinPriceInfoBinding
     private lateinit var viewModel: CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = ActivityCoinPriceInfoBinding.inflate(layoutInflater)
-        setContentView(ui.root)
+        binding = ActivityCoinPriceInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (!intent.hasExtra(EXTRA_FROM_SYMBOL)) {
             finish()
@@ -25,14 +25,16 @@ class CoinPriceInfoActivity : AppCompatActivity() {
         val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL) ?: EMPTY_SYMBOL
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
         viewModel.getDetailInfo(fromSymbol).observe(this) {
-            ui.tvFromSymbol.text = it.fromSymbol
-            ui.tvToSymbol.text = it.toSymbol
-            ui.tvPrice.text = it.price.toString()
-            ui.tvMinPrice.text = it.lowDay.toString()
-            ui.tvMaxPrice.text = it.highDay.toString()
-            ui.tvLastMarket.text = it.lastMarket
-            ui.tvLastUpdate.text = it.lastUpdate
-            Picasso.get().load(it.imageUrl).into(ui.ivLogoCoin)
+            with(binding) {
+                tvFromSymbol.text = it.fromSymbol
+                tvToSymbol.text = it.toSymbol
+                tvPrice.text = it.price.toString()
+                tvMinPrice.text = it.lowDay.toString()
+                tvMaxPrice.text = it.highDay.toString()
+                tvLastMarket.text = it.lastMarket
+                tvLastUpdate.text = it.lastUpdate
+                Picasso.get().load(it.imageUrl).into(ivLogoCoin)
+            }
         }
     }
 

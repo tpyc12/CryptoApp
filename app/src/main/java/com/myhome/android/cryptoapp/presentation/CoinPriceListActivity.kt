@@ -9,16 +9,16 @@ import com.myhome.android.cryptoapp.presentation.adapters.CoinInfoAdapter
 
 class CoinPriceListActivity : AppCompatActivity() {
 
-    private lateinit var ui: ActivityCoinPriceListBinding
+    private lateinit var binding: ActivityCoinPriceListBinding
     private lateinit var viewModel: CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = ActivityCoinPriceListBinding.inflate(layoutInflater)
-        setContentView(ui.root)
+        binding = ActivityCoinPriceListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val adapter = CoinInfoAdapter(this)
-        ui.rvCoinPriceList.adapter = adapter
+        binding.rvCoinPriceList.adapter = adapter
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinInfo) {
                 val intent = CoinPriceInfoActivity.newIntent(
