@@ -1,10 +1,10 @@
-package com.myhome.android.cryptoapp.pojo
+package com.myhome.android.cryptoapp.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.myhome.android.cryptoapp.api.ApiFactory.BASE_IMAGE_URL
+import com.myhome.android.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import com.myhome.android.cryptoapp.utils.convertTimestampToTime
 
 @Entity(tableName = "full_price_list")
