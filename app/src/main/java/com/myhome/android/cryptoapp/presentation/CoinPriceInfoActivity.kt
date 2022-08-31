@@ -5,20 +5,20 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.myhome.android.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import com.myhome.android.cryptoapp.databinding.ActivityCoinPriceInfoBinding
-import com.myhome.android.cryptoapp.utils.convertTimestampToTime
 import com.squareup.picasso.Picasso
 
 class CoinPriceInfoActivity : AppCompatActivity() {
 
-    private lateinit var ui: ActivityCoinPriceInfoBinding
+    private val binding by lazy {
+        ActivityCoinPriceInfoBinding.inflate(layoutInflater)
+    }
+
     private lateinit var viewModel: CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = ActivityCoinPriceInfoBinding.inflate(layoutInflater)
-        setContentView(ui.root)
+        setContentView(binding.root)
 
         if (!intent.hasExtra(EXTRA_FROM_SYMBOL)) {
             finish()
@@ -27,14 +27,14 @@ class CoinPriceInfoActivity : AppCompatActivity() {
         val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL) ?: EMPTY_SYMBOL
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
         viewModel.getDetailInfo(fromSymbol).observe(this) {
-            ui.tvFromSymbol.text = it.fromSymbol
-            ui.tvToSymbol.text = it.toSymbol
-            ui.tvPrice.text = it.price.toString()
-            ui.tvMinPrice.text = it.lowDay.toString()
-            ui.tvMaxPrice.text = it.highDay.toString()
-            ui.tvLastMarket.text = it.lastMarket
-            ui.tvLastUpdate.text = convertTimestampToTime(it.lastUpdate)
-            Picasso.get().load(BASE_IMAGE_URL + it.imageUrl).into(ui.ivLogoCoin)
+            binding.tvFromSymbol.text = it.fromSymbol
+            binding.tvToSymbol.text = it.toSymbol
+            binding.tvPrice.text = it.price.toString()
+            binding.tvMinPrice.text = it.lowDay.toString()
+            binding.tvMaxPrice.text = it.highDay.toString()
+            binding.tvLastMarket.text = it.lastMarket
+            binding.tvLastUpdate.text = it.lastUpdate
+            Picasso.get().load(it.imageUrl).into(binding.ivLogoCoin)
         }
     }
 
