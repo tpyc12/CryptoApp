@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CryptoApp">
         <activity
-            android:name=".presentation.CoinPriceInfoActivity"
+            android:name=".presentation.CoinDetailActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.CoinPriceListActivity"

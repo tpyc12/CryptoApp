@@ -23,7 +23,7 @@ class CoinPriceListActivity : AppCompatActivity() {
         binding.rvCoinPriceList.adapter = adapter
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinInfo) {
-                val intent = CoinPriceInfoActivity.newIntent(
+                val intent = CoinDetailActivity.newIntent(
                     this@CoinPriceListActivity,
                     coinPriceInfo.fromSymbol
                 )
