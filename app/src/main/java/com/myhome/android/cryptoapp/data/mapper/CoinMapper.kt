@@ -10,8 +10,9 @@ import java.sql.Date
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class CoinMapper {
+class CoinMapper @Inject constructor() {
 
     fun mapDtoToDbModel(dto: CoinInfoDto) = CoinInfoDbModel(
         fromSymbol = dto.fromSymbol,
@@ -69,7 +70,7 @@ class CoinMapper {
         return sdf.format(date)
     }
 
-    companion object{
+    companion object {
 
         private const val BASE_IMAGE_URL = "https://cryptocompare.com"
     }

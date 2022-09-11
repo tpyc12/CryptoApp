@@ -7,6 +7,7 @@ import com.myhome.android.cryptoapp.R
 import com.myhome.android.cryptoapp.databinding.ActivityCoinPriceListBinding
 import com.myhome.android.cryptoapp.domain.entity.CoinInfo
 import com.myhome.android.cryptoapp.presentation.adapters.CoinInfoAdapter
+import javax.inject.Inject
 
 class CoinPriceListActivity : AppCompatActivity() {
 
@@ -16,7 +17,16 @@ class CoinPriceListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CoinViewModel
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as CoinApp).component
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -24,14 +34,14 @@ class CoinPriceListActivity : AppCompatActivity() {
         binding.rvCoinPriceList.adapter = adapter
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinInfo) {
-                if (isOnePaneMode()){
+                if (isOnePaneMode()) {
                     launchDetailActivity(coinPriceInfo.fromSymbol)
-                } else  {
+                } else {
                     launchDetailFragment(coinPriceInfo.fromSymbol)
                 }
             }
         }
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[CoinViewModel::class.java]
         viewModel.coinInfoList.observe(this) {
             adapter.submitList(it)
         }
