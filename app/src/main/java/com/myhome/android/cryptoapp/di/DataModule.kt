@@ -3,6 +3,8 @@ package com.myhome.android.cryptoapp.di
 import android.app.Application
 import com.myhome.android.cryptoapp.data.database.AppDatabase
 import com.myhome.android.cryptoapp.data.database.CoinInfoDao
+import com.myhome.android.cryptoapp.data.network.ApiFactory
+import com.myhome.android.cryptoapp.data.network.ApiService
 import com.myhome.android.cryptoapp.data.repository.CoinRepositoryImpl
 import com.myhome.android.cryptoapp.domain.repository.CoinRepository
 import dagger.Binds
@@ -13,15 +15,23 @@ import dagger.Provides
 interface DataModule {
 
     @Binds
+    @ApplicationScope
     fun bindCoinRepository(impl: CoinRepositoryImpl): CoinRepository
 
     companion object {
 
         @Provides
+        @ApplicationScope
         fun provideCoinInfoDao(
             application: Application
         ): CoinInfoDao {
             return AppDatabase.getInstance(application).coinPriceInfoDao()
+        }
+
+        @Provides
+        @ApplicationScope
+        fun provideApiService(): ApiService{
+            return ApiFactory.apiService
         }
     }
 }

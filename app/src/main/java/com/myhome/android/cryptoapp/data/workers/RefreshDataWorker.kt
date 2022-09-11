@@ -9,6 +9,7 @@ import com.myhome.android.cryptoapp.data.database.CoinInfoDao
 import com.myhome.android.cryptoapp.data.mapper.CoinMapper
 import com.myhome.android.cryptoapp.data.network.ApiService
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
 class RefreshDataWorker(
     context: Context,

@@ -7,8 +7,9 @@ import androidx.work.WorkerParameters
 import com.myhome.android.cryptoapp.data.database.CoinInfoDao
 import com.myhome.android.cryptoapp.data.mapper.CoinMapper
 import com.myhome.android.cryptoapp.data.network.ApiService
+import javax.inject.Inject
 
-class RefreshDataWorkerFactory(
+class RefreshDataWorkerFactory @Inject constructor (
     private val coinInfoDao: CoinInfoDao,
     private val apiService: ApiService,
     private val mapper: CoinMapper
