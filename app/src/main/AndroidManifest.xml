@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.myhome.android.cryptoapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
         android:name=".presentation.CoinApp"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -24,6 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="androidx.work.WorkManagerInitializer"
+            tools:node="remove"
+            tools:replace="android:authorities" />
     </application>
 
 </manifest>
